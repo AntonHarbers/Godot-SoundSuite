@@ -1,0 +1,154 @@
+[gd_scene load_steps=5 format=3 uid="uid://dndi0u0gsilch"]
+
+[ext_resource type="Script" path="res://addons/godot-soundsuite/SoundSuiteUI.gd" id="1_2vghe"]
+[ext_resource type="Texture2D" uid="uid://ddjsqyn4ek6ap" path="res://addons/godot-soundsuite/Art/volume.png" id="1_pgw5o"]
+[ext_resource type="Texture2D" uid="uid://u0syam208rgs" path="res://addons/godot-soundsuite/Art/volume-mute.png" id="2_w20gm"]
+[ext_resource type="AudioStream" uid="uid://c38658mr3ynxk" path="res://addons/godot-soundsuite/Sounds/offSwitch.ogg" id="4_lxx2r"]
+
+[node name="SoundSuiteUI" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_2vghe")
+
+[node name="AudioSlidersVbox" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="GeneralVolumeLabel" type="Label" parent="AudioSlidersVbox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "GENERAL"
+horizontal_alignment = 1
+
+[node name="GeneralVolumeHbox" type="HBoxContainer" parent="AudioSlidersVbox"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="GeneralVolumeSlider" type="HSlider" parent="AudioSlidersVbox/GeneralVolumeHbox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+min_value = -30.0
+max_value = 6.0
+tick_count = 10
+ticks_on_borders = true
+
+[node name="GeneralVolumeIcon" type="TextureRect" parent="AudioSlidersVbox/GeneralVolumeHbox"]
+unique_name_in_owner = true
+modulate = Color(0.856067, 0.856067, 0.856067, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("1_pgw5o")
+expand_mode = 2
+
+[node name="GeneralMuteIcon" type="TextureRect" parent="AudioSlidersVbox/GeneralVolumeHbox"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.996946, 3.39322e-06, 1.92523e-07, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("2_w20gm")
+expand_mode = 2
+
+[node name="MusicVolumeLabel" type="Label" parent="AudioSlidersVbox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "MUSIC"
+horizontal_alignment = 1
+
+[node name="MusicVolumeHbox" type="HBoxContainer" parent="AudioSlidersVbox"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="MusicVolumeSlider" type="HSlider" parent="AudioSlidersVbox/MusicVolumeHbox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+min_value = -30.0
+max_value = 6.0
+tick_count = 10
+ticks_on_borders = true
+
+[node name="MusicVolumeIcon" type="TextureRect" parent="AudioSlidersVbox/MusicVolumeHbox"]
+unique_name_in_owner = true
+modulate = Color(0.856067, 0.856067, 0.856067, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("1_pgw5o")
+expand_mode = 2
+
+[node name="MusicMuteIcon" type="TextureRect" parent="AudioSlidersVbox/MusicVolumeHbox"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.996946, 3.39322e-06, 1.92523e-07, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("2_w20gm")
+expand_mode = 2
+
+[node name="SoundFXVolumeLabel" type="Label" parent="AudioSlidersVbox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "SOUND FX"
+horizontal_alignment = 1
+
+[node name="FxVolumeHbox" type="HBoxContainer" parent="AudioSlidersVbox"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="SoundFXVolumeSlider" type="HSlider" parent="AudioSlidersVbox/FxVolumeHbox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+min_value = -30.0
+max_value = 6.0
+tick_count = 10
+ticks_on_borders = true
+
+[node name="FXVolumeIcon" type="TextureRect" parent="AudioSlidersVbox/FxVolumeHbox"]
+unique_name_in_owner = true
+modulate = Color(0.856067, 0.856067, 0.856067, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("1_pgw5o")
+expand_mode = 2
+
+[node name="FXMuteIcon" type="TextureRect" parent="AudioSlidersVbox/FxVolumeHbox"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.996946, 3.39322e-06, 1.92523e-07, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("2_w20gm")
+expand_mode = 2
+
+[node name="UISounds" type="Node2D" parent="."]
+
+[node name="OnDragStartSound" type="AudioStreamPlayer2D" parent="UISounds"]
+stream = ExtResource("4_lxx2r")
+max_distance = 1e+06
+bus = &"FX"
+
+[node name="OnDragEndSound" type="AudioStreamPlayer2D" parent="UISounds"]
+max_distance = 1e+06
+
+[node name="SwitchOnSound" type="AudioStreamPlayer2D" parent="UISounds"]
+max_distance = 1e+06
+bus = &"Music"
+
+[node name="SwitchOffSound" type="AudioStreamPlayer2D" parent="UISounds"]
+max_distance = 1e+06
+bus = &"FX"
+
+[connection signal="value_changed" from="AudioSlidersVbox/GeneralVolumeHbox/GeneralVolumeSlider" to="." method="_on_general_volume_slider_value_changed"]
+[connection signal="value_changed" from="AudioSlidersVbox/MusicVolumeHbox/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="AudioSlidersVbox/FxVolumeHbox/SoundFXVolumeSlider" to="." method="_on_sound_fx_volume_slider_value_changed"]

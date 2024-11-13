@@ -11,8 +11,17 @@ config_version=5
 [application]
 
 config/name="Godot-SoundSuite"
+run/main_scene="res://entry.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GodotSoundSuite="*res://addons/godot-soundsuite/godot_sound_suite.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-soundsuite/plugin.cfg")
 
 [rendering]
 
